@@ -1,14 +1,12 @@
 # EXPERIMENT-02-Interfacing-Multiple-Switches-for-LED-Control-Using-MicroPython
 
+## NAME: KISHOR K R
 
- 
-## NAME:
+## DEPARTMENT: CSE(IOT)
 
-## DEPARTMENT:
+## ROLL NO: 212224110032
 
-## ROLL NO:
-
-## DATE OF EXPERIMENT:
+## DATE OF EXPERIMENT: 03/03/2025
 
 ## AIM
 
@@ -63,27 +61,61 @@ Connect LED 2 to GP17 via a 330Ω resistor.
 
 Connect the other terminals of the switches to GND.
 
-## PROGRAM (MicroPython)
-''''
+## PROGRAM (MicroPython):
+```
+from machine import Pin
+from time import sleep
 
+switch1 = Pin(2, Pin.IN)
+switch2 = Pin(3, Pin.IN)
 
+led = Pin(15, Pin.OUT)
+led2 = Pin(16, Pin.OUT)
+while True:
+    sw1_state = switch1.value()
+    sw2_state = switch2.value()
+    print("Switch 1 state:",sw1_state)
+    print("Switch 2 state:",sw2_state)
+    led.value(0)
 
- 
+    if sw1_state==1 and sw2_state==1:
+        led.value(0)
+        led2.value(0)
 
+    elif sw1_state==1:
+        led.value(1)
+        sleep(0.5)
+        led.value(0)
+        led2.value(0)
+
+    elif sw2_state==1:
+        led.value(0)
+        led2.value(1)
+        sleep(0.5)
+        led2.value(0)
+
+    sleep(0.5)
+
+```
 ## OUTPUT
 
+OUTPUT 1(0-0):
+![Screenshot 2025-03-03 105917](https://github.com/user-attachments/assets/97da8983-62c5-432a-a21c-bec4101b92d8)
+
+OUTPUT 2(1-0):
+![Screenshot 2025-03-03 105947](https://github.com/user-attachments/assets/c4901acb-162f-4896-8a79-edcf44f80565)
+
+OUTPUT 3(0-1):
+![Screenshot 2025-03-03 110014](https://github.com/user-attachments/assets/88528419-b41c-4509-83fa-fc47fba40e21)
+
+OUTPUT 4(1-1):
+![Screenshot 2025-03-03 110043](https://github.com/user-attachments/assets/c995b343-1e41-402d-8626-13ec83040b63)
 
 
-FIGURE-02: CIRCUIT CONNECTION
 
-FIGURE-03: CODE EXECUTION OUTPUT
-
-FIGURE-04: LED STATUS BASED ON SWITCH INPUTS
 ## TIMING DIGAGRAM 
 
-
-UPLOAD YOUR TIMING DIGARAM HERE 
-
+![WhatsApp Image 2025-03-03 at 11 18 57_05962d78](https://github.com/user-attachments/assets/89c2f754-e870-4a72-93a7-d914f2770e8c)
 
 
 ## RESULTS
